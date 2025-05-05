@@ -103,8 +103,8 @@ Licensed under the Apache License.
 Please note that this container requires privileged access to Docker on your host machine via `/var/run/docker.sock`.
 
 The author of this repository is not affiliated with or endorsed by the developers of Amnezia VPN. The software provided here
-includes Amnezia VPN, which operates independently from this Docker image. The author has no control over the source code or
-behavior of Amnezia VPN and is not responsible for any actions or outcomes that may result from its use.
+includes Amnezia VPN, which operates independently of this Docker image. The author has no control over the source code or
+behavior of Amnezia VPN and is not responsible for any actions or outcomes resulting from its use.
 
 **Disclaimer of Liability**: This Docker image is provided "AS IS" without any warranties, express or implied, and is intended for
 use at the user's own risk. Users are strongly encouraged to perform their own security and functionality review of Amnezia VPN
