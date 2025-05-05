@@ -6,6 +6,9 @@
 
 This is a docker image for the Amnezia VPN server.
 
+I also suggest reviewing [my repository](https://github.com/nokitakaze/OVPN2AmneziaWG), which uses Docker to deploy a pair of
+OpenVPN servers (with and without TLS) that route their traffic through any AmneziaWG server, including THIS server.
+
 The image uses the latest Ubuntu LTS at the moment — 24.04.
 
 ## Installation
