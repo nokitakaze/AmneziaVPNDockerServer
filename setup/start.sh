@@ -21,4 +21,5 @@ else
   cp ssh_host_rsa_key.pub ../
 fi
 
-/usr/sbin/sshd -D
+# Launches the OpenSSH daemon in foreground mode (-D) and directs all log output to stderr (-e)
+/usr/sbin/sshd -D -e
