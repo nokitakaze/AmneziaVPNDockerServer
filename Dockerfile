@@ -14,7 +14,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt update && \
     # preinstall packages for docker.io
     DEBIAN_FRONTEND=noninteractive /tmp/setup/install-docker.sh && \
     rm /tmp/setup/install-docker.sh && \
-    # Disable SSH-daemon autostart
+    # Disable SSH daemon autostart because it is launched from the Docker CMD and serves as the primary init process
     touch /etc/ssh/sshd_not_to_be_run && \
     chmod 0644 /etc/ssh/sshd_not_to_be_run && \
     echo 'root:password' | chpasswd
