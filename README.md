@@ -4,24 +4,24 @@
 [![Docker stars](https://badgen.net/docker/stars/nokitakaze/amnezia-vpn-server?icon=docker&label=stars)](https://hub.docker.com/r/nokitakaze/amnezia-vpn-server)
 [![Docker image size](https://badgen.net/docker/size/nokitakaze/amnezia-vpn-server)](https://hub.docker.com/r/nokitakaze/amnezia-vpn-server)
 
-This is a docker image for the Amnezia VPN server.
+This is a Docker image for the Amnezia VPN server.
 
-I also suggest reviewing [my repository](https://github.com/nokitakaze/OVPN2AmneziaWG), which uses Docker to deploy a pair of
+I also recommend reviewing [my repository](https://github.com/nokitakaze/OVPN2AmneziaWG), which uses Docker to deploy a pair of
 OpenVPN servers (with and without TLS) that route their traffic through any AmneziaWG / XRay server, including THIS server.
 
-The image uses the latest Ubuntu LTS at the moment — 24.04.
+The image currently uses the latest Ubuntu LTS release — 24.04.
 
 ## Installation
 
-1. Download the [Amnezia VPN client](https://amnezia.org/downloads), which will install all the necessary packages on the prepared
-   server. This will be needed later.
+1. Download the [Amnezia VPN client](https://amnezia.org/downloads). You will use it later to install all necessary packages on
+   the prepared server.
 2. Configure the host machine with Docker (including Docker
-   Compose). [Official installation guides](https://docs.docker.com/engine/install/)
-3. Create the future container
+   Compose). See the [official installation guides](https://docs.docker.com/engine/install/).
+3. Create the container.
 
 ### Clean image build
 
-Clone this git
+Clone this repository:
 
 ```sh
 git clone https://github.com/nokitakaze/AmneziaVPNDockerServer.git
@@ -29,7 +29,7 @@ cd AmneziaVPNDockerServer
 docker-compose build
 ```
 
-### As docker image
+### Using a Docker image
 
 Your `docker-compose.yml`:
 
@@ -46,58 +46,50 @@ services:
       - ./ssh-keys:/etc/ssh/server-keys
 ```
 
-Please note, **you only need to expose port 22**. All other ports on the host machine are forwarded by Amnezia VPN during setup on
+Please note that **you only need to expose port 22**. All other ports on the host machine are forwarded by Amnezia VPN during setup on
 the ports you specify within your client when setting up the server.
 
-4. Create the `ssh-keys` folder. This folder is intended for the persistent storage of SSH keys for the new server.
-
-```sh
-mkdir ssh-keys
-```
-
-5. Create a pair of private and public SSH keys. I prefer to use the
+4. Create a pair of SSH keys (private and public). I prefer using the
    [Putty Key Generator tool](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
 
-Place your ssh public keys in the `authorized_keys` file.
+Place your SSH public key in the `authorized_keys` file.
 
-Don't forget to export the private key in SSH format (`BEGIN RSA PRIVATE KEY`) without a password somewhere. It will be needed in
-step 7.
+Remember to export the private key in SSH format (`BEGIN RSA PRIVATE KEY`) without a password and keep it in a safe place.
+You will need it in step 6.
 
-6. Start your container
+5. Start your container
 
 ```sh
-docker-compose up -d
+docker-compose down && docker-compose up -d
 ```
 
 Your container will automatically generate new keys for the SSH server. If you delete the keys from the ssh-keys folder, it will
 create new ones when the container restarts.
 
-7. Setting up a server
+6. Set up the server
 
 Now you can connect to your new server on port 2222.  
-Connection -> Self-hosted VPN
+Connection → Self-hosted VPN
 
 Server IP address:
-Your address with port. For example: `example.com:2222` or `192.168.148.8:12345`
+Your address with a port. For example: `example.com:2222` or `192.168.148.8:12345`
 
 SSH Username:
 `root`
 
 Password or SSH private key:  
-Your private SSH key without a password, created in step 5.
+Your private SSH key without a password, created in step 4.
 
 ![Setting up a new server](docs/vpn-client-1.jpg)
 
-8. Setting up protocols
+7. Set up protocols
 
-Using the Amnezia VPN client, install all necessary protocols on your new server (the guest machine configured from this image).
+Use the Amnezia VPN client to install all necessary protocols on your new server (the guest machine configured from this image).
 
 Then, by using `docker ps`, you will be able to see all running sub-containers, including `amnezia-awg`, `amnezia-xray`, and
 others.
 
 ![Setting up VPN protocols](docs/docker-ps.png)
-
-Please note that **after restarting the guest machine, you will need to reinstall all protocols**.
 
 ## License
 
