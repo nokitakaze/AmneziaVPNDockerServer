@@ -9,7 +9,21 @@ This is a Docker image for the Amnezia VPN server.
 I also recommend reviewing [my repository](https://github.com/nokitakaze/OVPN2AmneziaWG), which uses Docker to deploy a pair of
 OpenVPN servers (with and without TLS) that route their traffic through any AmneziaWG / XRay server, including THIS server.
 
-The image currently uses the latest Ubuntu LTS release — 24.04.
+The docker image currently uses the latest Ubuntu LTS release — 24.04.
+
+## Requirements
+
+The choice of the LTS version is because it has the most battle-tested settings and software. Why use anything other than LTS for
+the core image if you can use LTS?
+
+The requirement from Amnezia itself is to install the server on a machine with Ubuntu
+
+https://amnezia.org/starter-guide
+> Minimum system requirements for VPS:
+>
+> Operating System - Linux, suitable for Ubuntu 22.04 or Debian 11.
+>
+> Supported processor architecture - x86-64.
 
 ## Installation
 
