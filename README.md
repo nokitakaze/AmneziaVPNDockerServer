@@ -25,6 +25,13 @@ https://amnezia.org/starter-guide
 >
 > Supported processor architecture - x86-64.
 
+As **host** machine I checked:
+On a real machine (dedicated server):
+- Ubuntu 20.04;
+
+On VirtualBox:
+- Ubuntu 24.04, 25.10;
+
 ## Installation
 
 1. Download the [Amnezia VPN client](https://amnezia.org/downloads). You will use it later to install all necessary packages on
